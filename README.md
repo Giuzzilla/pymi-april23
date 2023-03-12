@@ -1,6 +1,6 @@
 # pymi-april23
 
-Code for presentation @ PyMi Meetup (19th April 2023)
+Code for presentation @ PyMi Meetup (April 19th 2023)
 
 The topic of the presentation was to show a comparison between typical web application stacks in the Python and the Typescript ecosystems.
 
