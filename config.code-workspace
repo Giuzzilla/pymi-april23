@@ -1,0 +1,30 @@
+{
+    "folders": [
+      {
+        "path": "backend/fastapi-sqlalchemy1",
+        "settings": {
+          "python.path": "backend/fastapi-sqlalchemy1/venv/bin/python"
+        }
+      },
+      {
+        "path": "backend/fastapi-sqlalchemy2",
+        "settings": {
+          "python.path": "backend/fastapi-sqlalchemy2/venv/bin/python"
+        }
+      },
+      {
+        "path": "backend/flask-sqlalchemy1",
+        "settings": {
+          "python.path": "backend/flask-sqlalchemy1/venv/bin/python"
+        }
+      },
+      {
+        "path": "frontend",
+      },
+    ],
+    "settings": {
+      "python.formatting.provider": "black",
+      "editor.formatOnSave": true,
+      "editor.insertSpaces": true,
+    }
+}
