@@ -49,7 +49,7 @@ This is a modern stack which is increasingly used in the python ecosystem.
 
 It provides typesafety in the API layer, but not in the database layer.
 
-We can easily leverage the automatic generation of the OpenAPI schema from FastAPI to generate frontend stubs in Typescript to interact with the API with precise types. This is done using the `openapi-typescript` library.
+We can easily leverage the automatic generation of the OpenAPI schema from FastAPI to generate frontend stubs in Typescript to interact with the API with precise types. This is done using the [`openapi-typescript-codegen`](https://www.npmjs.com/package/openapi-typescript-codegen) library.
 This gets us a quite nice developer experience, slightly worse than tRPC, but still quite good.
 
 A common suggestion is to use Pydantic models to achieve typesafety in the database layer, but this is not ideal as it doesn't play well with SQLAlchemy.
