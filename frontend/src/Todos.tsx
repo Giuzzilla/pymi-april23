@@ -1,57 +1,66 @@
-import { useState } from 'react';
+import React, { useState, useRef } from 'react'
 
 export interface Todo {
-  title: string;
-  completed: boolean;
+  title: string
+  completed: boolean
 }
 
 export interface TodosProps {
-  todos: Todo[];
-  toggleTodo: (id: number) => void;
-  renameTodo: (id: number, newName: string) => void;
-  reorderTodos: (oldIndex: number, newIndex: number) => void;
-  addTodo: (newTodo: string) => void;
+  todos: Todo[]
+  toggleTodo: (id: number) => void
+  renameTodo: (id: number, newName: string) => void
+  reorderTodos: (oldIndex: number, newIndex: number) => void
+  addTodo: (newTodo: string) => void
 }
 
-export function Todos({
+export function Todos ({
   todos,
   toggleTodo,
   renameTodo,
   reorderTodos,
-  addTodo,
-}: TodosProps) {
-  const [newTodo, setNewTodo] = useState('');
+  addTodo
+}: TodosProps): JSX.Element {
+  const [newTodo, setNewTodo] = useState('')
 
-  const handleNewTodoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTodo(event.target.value);
-  };
+  const handleNewTodoChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setNewTodo(event.target.value)
+  }
 
   const handleNewTodoKeyDown = (
     event: React.KeyboardEvent<HTMLInputElement>
-  ) => {
+  ): void => {
     if (event.key === 'Enter') {
-      addTodo(newTodo);
-      setNewTodo('');
+      addTodo(newTodo)
+      setNewTodo('')
     }
-  };
+  }
+
+  const todoList = todos.map((todo, index) => {
+    const inputRef = useRef<HTMLInputElement>(null)
+
+    return (
+    <li key={index}>
+      <input
+        type="checkbox"
+        checked={todo.completed}
+        onChange={() => {
+          toggleTodo(index)
+        }}
+      />
+      <input
+        type="text"
+        ref={inputRef}
+        defaultValue={todo.title}
+        onKeyDown={() => { inputRef.current != null && renameTodo(index, inputRef.current.value) }}
+      />
+    </li>
+    )
+  })
 
   return (
     <div>
       <ul>
-        {todos.map((todo, index) => (
-          <li key={index}>
-            <input
-              type="checkbox"
-              checked={todo.completed}
-              onChange={() => toggleTodo(index)}
-            />
-            <input
-              type="text"
-              value={todo.title}
-              onChange={event => renameTodo(index, event.target.value)}
-            />
-          </li>
-        ))}
+        {todoList}
       </ul>
       <input
         type="text"
@@ -60,5 +69,5 @@ export function Todos({
         onKeyDown={handleNewTodoKeyDown}
       />
     </div>
-  );
+  )
 }
