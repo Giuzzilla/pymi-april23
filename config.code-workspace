@@ -20,6 +20,12 @@
       },
       {
         "path": "frontend",
+        "settings": {
+          "editor.codeActionsOnSave": {
+              "source.fixAll.eslint": true
+          },
+          "eslint.format.enable": true,
+        }
       },
     ],
     "settings": {
