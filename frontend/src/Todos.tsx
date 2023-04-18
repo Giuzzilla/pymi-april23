@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 
 export interface Todo {
+  id: number
   title: string
   completed: boolean
 }
@@ -34,10 +35,8 @@ export function Todos ({
   }
 
   const todoList = todos.map((todo, index) => {
-    const inputRef = useRef<HTMLInputElement>(null)
-
     return (
-    <li key={index}>
+    <li key={todo.id}>
       <input
         type="checkbox"
         checked={todo.completed}
@@ -47,12 +46,10 @@ export function Todos ({
       />
       <input
         type="text"
-        ref={inputRef}
         defaultValue={todo.title}
         onKeyDown={(event) => {
           if (event.key !== 'Enter') return
-
-          inputRef.current != null && renameTodo(index, inputRef.current.value)
+          event != null && renameTodo(index, event.currentTarget.value)
         }}
       />
     </li>
