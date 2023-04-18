@@ -40,12 +40,12 @@ class CreateTodoSchema(BaseModel):
 
 
 @app.post("/todos/")
-def create_todo(request: CreateTodoSchema) -> Response:
+def create_todo(request: CreateTodoSchema) -> TodoSchema:
     with Session() as session:
         todo = Todo(title=request.title, completed=False)
         session.add(todo)
         session.commit()
-        return Response(status_code=201)
+        return todo
 
 
 class EditTodoSchema(BaseModel):
@@ -57,7 +57,7 @@ class EditTodoSchema(BaseModel):
 def edit_todo(
     item_id: int,
     request: EditTodoSchema,
-) -> Response:
+) -> TodoSchema:
     with Session() as session:
         todo = session.query(Todo).get(item_id + 1)
         if request.completed is not None:
@@ -65,4 +65,4 @@ def edit_todo(
         if request.title:
             todo.title = request.title
         session.commit()
-        return Response(status_code=204)
+        return todo

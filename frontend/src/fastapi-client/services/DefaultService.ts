@@ -1,5 +1,4 @@
 /* istanbul ignore file */
-/* tslint:disable */
 /* eslint-disable */
 import type { CreateTodoSchema } from '../models/CreateTodoSchema';
 import type { EditTodoSchema } from '../models/EditTodoSchema';
@@ -26,12 +25,12 @@ export class DefaultService {
     /**
      * Create Todo
      * @param requestBody
-     * @returns any Successful Response
+     * @returns TodoSchema Successful Response
      * @throws ApiError
      */
     public static createTodo(
         requestBody: CreateTodoSchema,
-    ): CancelablePromise<any> {
+    ): CancelablePromise<TodoSchema> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/todos/',
@@ -47,13 +46,13 @@ export class DefaultService {
      * Edit Todo
      * @param itemId
      * @param requestBody
-     * @returns any Successful Response
+     * @returns TodoSchema Successful Response
      * @throws ApiError
      */
     public static editTodo(
         itemId: number,
         requestBody: EditTodoSchema,
-    ): CancelablePromise<any> {
+    ): CancelablePromise<TodoSchema> {
         return __request(OpenAPI, {
             method: 'PUT',
             url: '/todos/{item_id}/',

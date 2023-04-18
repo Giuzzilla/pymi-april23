@@ -1,4 +1,4 @@
-from flask import Flask, Response
+from flask import Flask
 from flask import request
 
 from models import Todo, Session
@@ -22,7 +22,7 @@ def create_todo():
         )  # No validation of title, could be anything
         session.add(todo)
         session.commit()
-        return Response(status=201)
+        return todo
 
 
 @app.route("/todos/<int:item_id>/", methods=["PUT"])
@@ -35,4 +35,4 @@ def edit_todo(item_id):
         if "title" in data:
             todo.title = data["title"]  # No type information
         session.commit()
-        return Response(status=204)
+        return todo
