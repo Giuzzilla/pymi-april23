@@ -40,7 +40,7 @@ export function FastApi (): JSX.Element {
     (data !== undefined)
       ? <Todos
       todos={data}
-      toggleTodo={toggleTodo}
+      toggleTodo={toggleTodo} // TODO: Turn into async
       renameTodo={renameTodo}
       addTodo={addTodo}
     />

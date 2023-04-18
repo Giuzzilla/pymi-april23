@@ -20,6 +20,7 @@ export function Todos ({
   addTodo
 }: TodosProps): JSX.Element {
   const [newTodo, setNewTodo] = useState('')
+  const [editedTodos, setEditedTodos] = useState<Map<number, string>>()
 
   const handleNewTodoChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setNewTodo(event.target.value)
@@ -35,8 +36,10 @@ export function Todos ({
   }
 
   const todoList = todos.map((todo, index) => {
+    const saveTitle = editedTodos?.get(todo.id) !== todo.title ? editedTodos?.get(todo.id) : undefined
+
     return (
-    <li key={todo.id}>
+    <div key={todo.id}>
       <input
         type="checkbox"
         checked={todo.completed}
@@ -51,22 +54,38 @@ export function Todos ({
           if (event.key !== 'Enter') return
           event != null && renameTodo(index, event.currentTarget.value)
         }}
+        onChange={(event) => {
+          const newEditedTodos = new Map(editedTodos)
+          newEditedTodos.set(todo.id, event.currentTarget.value)
+          setEditedTodos(newEditedTodos)
+        }}
+        disabled = {todo.completed}
       />
-    </li>
+      {(saveTitle != null) && <button onClick={() => {
+        renameTodo(todo.id, saveTitle)
+        const newEditedTodos = new Map(editedTodos)
+        newEditedTodos.delete(todo.id)
+        setEditedTodos(newEditedTodos)
+      }}>Save</button>}
+    </div>
     )
   })
 
   return (
     <div>
-      <ul>
-        {todoList}
-      </ul>
+      {todoList}
       <input
         type="text"
         value={newTodo}
         onChange={handleNewTodoChange}
         onKeyDown={handleNewTodoKeyDown}
       />
+      {
+        (newTodo !== '') && <button onClick={() => {
+          addTodo(newTodo)
+          setNewTodo('')
+        }}>Add</button>
+      }
     </div>
   )
 }

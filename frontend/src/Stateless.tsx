@@ -3,8 +3,8 @@ import { Todos, type Todo } from './Todos'
 
 export function Stateless (): JSX.Element {
   const [todos, setTodos] = useState<Todo[]>([
-    { title: 'Learn React', completed: false },
-    { title: 'Learn TypeScript', completed: false }
+    { id: 1, title: 'Learn React', completed: false },
+    { id: 2, title: 'Learn TypeScript', completed: false }
   ])
 
   const toggleTodo = (id: number): void => {
@@ -28,7 +28,8 @@ export function Stateless (): JSX.Element {
   const addTodo = (newTodo: string): void => {
     setTodos(todos => {
       const newTodos = [...todos]
-      newTodos.push({ title: newTodo, completed: false })
+      const maxId = Math.max(...newTodos.map(todo => todo.id), 1)
+      newTodos.push({ id: maxId + 1, title: newTodo, completed: false })
       return newTodos
     })
   }
