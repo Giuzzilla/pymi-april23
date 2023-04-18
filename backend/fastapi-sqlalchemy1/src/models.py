@@ -13,7 +13,7 @@ class Todo(Base):
 
 
 engine = create_engine("sqlite:///todos.db")
-Session = sessionmaker(bind=engine)
+Session = sessionmaker(bind=engine, expire_on_commit=False)
 # NOT ASYNC!! In SQLA < 1.4 you could only use an additional library like `databases`
 
 Base.metadata.create_all(engine)
