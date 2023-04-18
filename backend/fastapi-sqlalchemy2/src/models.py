@@ -7,9 +7,7 @@ from sqlalchemy.orm import (
     MappedAsDataclass,
     mapped_column,
 )
-from sqlalchemy.ext.asyncio import create_async_engine
-from sqlalchemy.ext.asyncio import async_sessionmaker
-from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
 
 
 str30 = Annotated[str, String(30)]
