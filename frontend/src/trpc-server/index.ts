@@ -5,8 +5,8 @@ import { z } from 'zod'
 
 const todoSchema = z.object({
   id: z.number(),
-  title: z.string(),
-  completed: z.boolean()
+  title: z.optional(z.string()),
+  completed: z.optional(z.boolean())
 })
 
 const appRouter = router({
