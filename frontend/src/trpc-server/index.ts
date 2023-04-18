@@ -1,21 +1,21 @@
-import { createHTTPServer } from "@trpc/server/adapters/standalone";
-import { publicProcedure, router } from "./trpc";
-import { db } from "./db";
-import { z } from "zod";
+import { createHTTPServer } from '@trpc/server/adapters/standalone'
+import { publicProcedure, router } from './trpc'
+import { db } from './db'
+import { z } from 'zod'
 
 const todoSchema = z.object({
   id: z.number(),
   title: z.string(),
   completed: z.boolean()
-});
+})
 
 const appRouter = router({
   editTodo: publicProcedure
     .input(todoSchema)
-    .query(async (opts) => {
-      const { input } = opts;
+    .mutation(async (opts) => {
+      const { input } = opts
 
-      return await db.todo.update({
+      const todo = await db.todo.update({
         where: {
           id: input.id
         },
@@ -24,30 +24,32 @@ const appRouter = router({
           completed: input.completed
         }
       })
+      return todo
     }),
   createTodo: publicProcedure
     .input(z.string())
-    .query(async (opts) => {
-      const { input } = opts;
-      return await db.todo.create({
+    .mutation(async (opts) => {
+      const { input } = opts
+      const todo = await db.todo.create({
         data: {
           title: input
         }
-      });
+      })
+      return todo
     }),
   getAllTodos: publicProcedure
     .query(async () => {
-      return await db.todo.findMany({
-        orderBy: { id: "asc" }
+      const todos = await db.todo.findMany({
+        orderBy: { id: 'asc' }
       })
+      return todos
     })
-});
+})
 
-export type AppRouter = typeof appRouter;
+export type AppRouter = typeof appRouter
 
 const server = createHTTPServer({
   router: appRouter
-});
+})
 
-server.listen(3000);
-
+server.listen(3000)
