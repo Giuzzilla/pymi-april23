@@ -25,15 +25,6 @@ export function Stateless (): JSX.Element {
     )
   }
 
-  const reorderTodos = (oldIndex: number, newIndex: number): void => {
-    setTodos(todos => {
-      const newTodos = [...todos]
-      const [removed] = newTodos.splice(oldIndex, 1)
-      newTodos.splice(newIndex, 0, removed)
-      return newTodos
-    })
-  }
-
   const addTodo = (newTodo: string): void => {
     setTodos(todos => {
       const newTodos = [...todos]
@@ -47,7 +38,6 @@ export function Stateless (): JSX.Element {
       todos={todos}
       toggleTodo={toggleTodo}
       renameTodo={renameTodo}
-      reorderTodos={reorderTodos}
       addTodo={addTodo}
     />
   )

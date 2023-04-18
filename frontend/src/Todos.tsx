@@ -9,7 +9,6 @@ export interface TodosProps {
   todos: Todo[]
   toggleTodo: (id: number) => void
   renameTodo: (id: number, newName: string) => void
-  reorderTodos: (oldIndex: number, newIndex: number) => void
   addTodo: (newTodo: string) => void
 }
 
@@ -17,7 +16,6 @@ export function Todos ({
   todos,
   toggleTodo,
   renameTodo,
-  reorderTodos,
   addTodo
 }: TodosProps): JSX.Element {
   const [newTodo, setNewTodo] = useState('')
@@ -51,7 +49,11 @@ export function Todos ({
         type="text"
         ref={inputRef}
         defaultValue={todo.title}
-        onKeyDown={() => { inputRef.current != null && renameTodo(index, inputRef.current.value) }}
+        onKeyDown={(event) => {
+          if (event.key !== 'Enter') return
+
+          inputRef.current != null && renameTodo(index, inputRef.current.value)
+        }}
       />
     </li>
     )

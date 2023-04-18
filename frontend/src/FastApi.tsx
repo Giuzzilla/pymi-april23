@@ -29,21 +29,11 @@ export function FastApi (): JSX.Element {
     )
   }
 
-  const reorderTodos = (oldIndex: number, newIndex: number): void => {
-    // setTodos(todos => {
-    //   const newTodos = [...todos]
-    //   const [removed] = newTodos.splice(oldIndex, 1)
-    //   newTodos.splice(newIndex, 0, removed)
-    //   return newTodos
-    // })
-  }
-
   const addTodo = (newTodo: string): void => {
-    // if (todos == null) return
-    // DefaultService.createTodo({
-    //   title: newTodo
-    // }).catch(console.error)
-    // getTodos()
+    if (data == null) return
+    void DefaultService.createTodo({ title: newTodo }).catch(console.error).then(
+      async (res) => { await queryClient.invalidateQueries({ queryKey: ['todos'] }) }
+    )
   }
 
   return (
@@ -52,7 +42,6 @@ export function FastApi (): JSX.Element {
       todos={data}
       toggleTodo={toggleTodo}
       renameTodo={renameTodo}
-      reorderTodos={reorderTodos}
       addTodo={addTodo}
     />
       : <div>Loading...</div>
