@@ -15,25 +15,22 @@ export function FastApi (): JSX.Element {
     return <span>Loading...</span>
   }
 
-  const toggleTodo = (id: number): void => {
+  const toggleTodo = async (id: number): Promise<void> => {
     if (data == null || data.length <= id) return
-    void DefaultService.editTodo(id, { completed: !data[id].completed }).catch(console.error).then(
-      async () => { await queryClient.invalidateQueries({ queryKey: ['todos'] }) }
-    )
+    await DefaultService.editTodo(id, { completed: !data[id].completed })
+    await queryClient.invalidateQueries({ queryKey: ['todos'] })
   }
 
-  const renameTodo = (id: number, newName: string): void => {
+  const renameTodo = async (id: number, newName: string): Promise<void> => {
     if (data == null || data.length <= id) return
-    void DefaultService.editTodo(id, { title: newName }).catch(console.error).then(
-      async () => { await queryClient.invalidateQueries({ queryKey: ['todos'] }) }
-    )
+    await DefaultService.editTodo(id, { title: newName })
+    await queryClient.invalidateQueries({ queryKey: ['todos'] })
   }
 
-  const addTodo = (newTodo: string): void => {
+  const addTodo = async (newTodo: string): Promise<void> => {
     if (data == null) return
-    void DefaultService.createTodo({ title: newTodo }).catch(console.error).then(
-      async (res) => { await queryClient.invalidateQueries({ queryKey: ['todos'] }) }
-    )
+    await DefaultService.createTodo({ title: newTodo })
+    await queryClient.invalidateQueries({ queryKey: ['todos'] })
   }
 
   return (

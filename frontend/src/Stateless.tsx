@@ -7,7 +7,7 @@ export function Stateless (): JSX.Element {
     { id: 2, title: 'Learn TypeScript', completed: false }
   ])
 
-  const toggleTodo = (id: number): void => {
+  const toggleTodo = async (id: number): Promise<void> => {
     if (todos.length <= id) return
     setTodos(
       todos.map((todo, index) =>
@@ -16,7 +16,7 @@ export function Stateless (): JSX.Element {
     )
   }
 
-  const renameTodo = (id: number, newName: string): void => {
+  const renameTodo = async (id: number, newName: string): Promise<void> => {
     if (todos.length <= id) return
     setTodos(
       todos.map((todo, index) =>
@@ -25,7 +25,7 @@ export function Stateless (): JSX.Element {
     )
   }
 
-  const addTodo = (newTodo: string): void => {
+  const addTodo = async (newTodo: string): Promise<void> => {
     setTodos(todos => {
       const newTodos = [...todos]
       const maxId = Math.max(...newTodos.map(todo => todo.id), 1)

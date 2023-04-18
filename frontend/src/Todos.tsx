@@ -8,9 +8,9 @@ export interface Todo {
 
 export interface TodosProps {
   todos: Todo[]
-  toggleTodo: (id: number) => void
-  renameTodo: (id: number, newName: string) => void
-  addTodo: (newTodo: string) => void
+  toggleTodo: (id: number) => Promise<void>
+  renameTodo: (id: number, newName: string) => Promise<void>
+  addTodo: (newTodo: string) => Promise<void>
 }
 
 export function Todos ({
@@ -25,12 +25,11 @@ export function Todos ({
   const handleNewTodoChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setNewTodo(event.target.value)
   }
-
   const handleNewTodoKeyDown = (
     event: React.KeyboardEvent<HTMLInputElement>
   ): void => {
     if (event.key === 'Enter') {
-      addTodo(newTodo)
+      addTodo(newTodo).catch(console.error)
       setNewTodo('')
     }
   }
@@ -44,7 +43,7 @@ export function Todos ({
         type="checkbox"
         checked={todo.completed}
         onChange={() => {
-          toggleTodo(index)
+          toggleTodo(index).catch(console.error)
         }}
       />
       <input
@@ -52,7 +51,7 @@ export function Todos ({
         defaultValue={todo.title}
         onKeyDown={(event) => {
           if (event.key !== 'Enter') return
-          event != null && renameTodo(index, event.currentTarget.value)
+          event != null && renameTodo(index, event.currentTarget.value).catch(console.error)
         }}
         onChange={(event) => {
           const newEditedTodos = new Map(editedTodos)
@@ -62,7 +61,7 @@ export function Todos ({
         disabled = {todo.completed}
       />
       {(saveTitle != null) && <button onClick={() => {
-        renameTodo(todo.id, saveTitle)
+        renameTodo(todo.id, saveTitle).catch(console.error)
         const newEditedTodos = new Map(editedTodos)
         newEditedTodos.delete(todo.id)
         setEditedTodos(newEditedTodos)
@@ -82,7 +81,7 @@ export function Todos ({
       />
       {
         (newTodo !== '') && <button onClick={() => {
-          addTodo(newTodo)
+          addTodo(newTodo).catch(console.error)
           setNewTodo('')
         }}>Add</button>
       }
