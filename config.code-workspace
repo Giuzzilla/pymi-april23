@@ -27,6 +27,9 @@
           "eslint.format.enable": true,
         }
       },
+      {
+        "path": ".",
+      }
     ],
     "settings": {
       "python.formatting.provider": "black",
