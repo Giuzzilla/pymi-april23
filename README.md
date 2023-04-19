@@ -96,3 +96,30 @@ There are likely tons of improvements coming to us in the future, such as:
 - Future versions of Pydantic will likely integrate much better with SQLAlchemy 2.0 types and [we have already hints of that](https://docs.sqlalchemy.org/en/20/changelog/changelog_20.html#change-2.0.4).
 - Pydantic 2.0 rewrite in Rust, which will likely provide a huge performance boost to parsing and validation.
 - Let's watch for Tiangolo (FastAPI creator) projects and see what he has in store for us with SQLModel.
+
+## References
+
+### [Presentation slides](https://slides.com/giuzzilla/deck-687a4d/fullscreen)
+
+### Main packages
+
+- [Flask](https://flask.palletsprojects.com/)
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [SQLAlchemy](https://www.sqlalchemy.org/)
+- [Pydantic](https://pydantic-docs.helpmanual.io/)
+- [Prisma](https://www.prisma.io/)
+- [tRPC](https://trpc.io/)
+- [libuv](https://libuv.org/)
+
+### Additional packages
+
+- [SQLModel](https://sqlmodel.tiangolo.com/)
+- [databases](https://github.com/encode/databases)
+- [Quart](https://quart.palletsprojects.com/en/latest/) - an async replacement for Flask
+- [Django Ninja](https://django-ninja.rest-framework.com/) - extension of Django REST framework similar to FastAPI and used with Django ORM
+
+### Useful links
+
+- [SQLAlchemy 2.0 release post](https://www.sqlalchemy.org/blog/2023/01/26/sqlalchemy-2.0.0-released/)
+- [FastAPI and async SQLAlchemy 2.0 with pytest done right
+  ](http://praciano.com.br/fastapi-and-async-sqlalchemy-20-with-pytest-done-right.html)
