@@ -61,7 +61,7 @@ async def edit_todo(
     request: EditTodoSchema,
     session: DBSession,
 ) -> TodoSchema:
-    todo = await session.get(Todo, item_id + 1)
+    todo = await session.get(Todo, item_id)
     if request.completed is not None:
         todo.completed = (
             request.completed

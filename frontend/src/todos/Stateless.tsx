@@ -8,10 +8,9 @@ export function Stateless (): JSX.Element {
   ])
 
   const toggleTodo = async (id: number): Promise<void> => {
-    if (todos.length <= id) return
     setTodos(
       todos.map((todo, index) =>
-        index === id ? { ...todo, completed: !todo.completed } : todo
+        index + 1 === id ? { ...todo, completed: !todo.completed } : todo
       )
     )
   }
@@ -20,7 +19,7 @@ export function Stateless (): JSX.Element {
     if (todos.length <= id) return
     setTodos(
       todos.map((todo, index) =>
-        index === id ? { ...todo, title: newName } : todo
+        index + 1 === id ? { ...todo, title: newName } : todo
       )
     )
   }

@@ -31,13 +31,17 @@ export function Stateful ({
   }
 
   const toggleTodo = async (id: number): Promise<void> => {
-    if (data == null || data.length <= id) return
-    await editTodo(id, { completed: !(data[id].completed) })
+    if (data == null) return
+    const todo = data.filter((el) => el.id === id)[0]
+    if (todo === undefined) return
+    await editTodo(id, { completed: !(todo.completed) })
     await refreshTodos()
   }
 
   const renameTodo = async (id: number, newName: string): Promise<void> => {
-    if (data == null || data.length <= id) return
+    if (data == null) return
+    const todo = data.filter((el) => el.id === id)[0]
+    if (todo === undefined) return
     await editTodo(id, { title: newName })
     await refreshTodos()
   }

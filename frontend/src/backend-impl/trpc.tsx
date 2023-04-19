@@ -14,11 +14,11 @@ export function ComponentTRPC (): JSX.Element {
   return Stateful({
     key: 'trpc',
     editTodo: async (id, params) => {
-      await trpc.editTodo.mutate({ id: id + 1, title: params.title, completed: params.completed })
+      await trpc.editTodo.mutate({ id, title: params.title, completed: params.completed })
     },
     createTodo: async (newTodo) => {
       await trpc.createTodo.mutate(newTodo)
     },
-    getTodos: () => trpc.getAllTodos.query()
+    getTodos: trpc.getAllTodos.query
   })
 }

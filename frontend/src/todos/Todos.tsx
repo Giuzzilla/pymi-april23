@@ -34,7 +34,7 @@ export function Todos ({
     }
   }
 
-  const todoList = todos.map((todo, index) => {
+  const todoList = todos.map((todo) => {
     const saveTitle = editedTodos?.get(todo.id) !== todo.title ? editedTodos?.get(todo.id) : undefined
 
     return (
@@ -43,7 +43,7 @@ export function Todos ({
         type="checkbox"
         checked={todo.completed}
         onChange={() => {
-          toggleTodo(index).catch(console.error)
+          toggleTodo(todo.id).catch(console.error)
         }}
       />
       <input
@@ -51,7 +51,7 @@ export function Todos ({
         defaultValue={todo.title}
         onKeyDown={(event) => {
           if (event.key !== 'Enter') return
-          event != null && renameTodo(index, event.currentTarget.value).catch(console.error)
+          event != null && renameTodo(todo.id, event.currentTarget.value).catch(console.error)
         }}
         onChange={(event) => {
           const newEditedTodos = new Map(editedTodos)

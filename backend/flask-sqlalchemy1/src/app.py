@@ -28,7 +28,7 @@ def create_todo():
 @app.route("/todos/<int:item_id>/", methods=["PUT"])
 def edit_todo(item_id):
     with Session() as session:
-        todo = session.query(Todo).get(item_id + 1)
+        todo = session.query(Todo).get(item_id)
         data = request.json
         if "completed" in data:
             todo.completed = data["completed"]  # No type information

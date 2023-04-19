@@ -59,7 +59,7 @@ def edit_todo(
     request: EditTodoSchema,
 ) -> TodoSchema:
     with Session() as session:
-        todo = session.query(Todo).get(item_id + 1)
+        todo = session.query(Todo).get(item_id)
         if request.completed is not None:
             todo.completed = request.completed
         if request.title:
