@@ -1,4 +1,4 @@
-# pymi-april23 (Work-in-progress)
+# PyMi April '23 - "FastAPI and SQLAlchemy 2.0: Name a More Pythonic Duo"
 
 Code for presentation @ PyMi Meetup (April 19th 2023)
 
