@@ -72,15 +72,18 @@ This gets us a quite nice developer experience, slightly worse than tRPC, but st
 A common suggestion is to use Pydantic models to achieve typesafety in the database layer, but this is not ideal as it doesn't play well with SQLAlchemy.
 SQLModel is a library which aims to solve this problem, but it is still in its early stages.
 
-The webserver (FastAPI) supports Async natively. Since the 1.4 version, SQLAlchemy natively supports Async at the database layer, avoiding the need to use external packages such as [`databases`](https://github.com/encode/databases).
+The webserver (FastAPI) supports Async natively. However, SQLAlchemy pre-1.4 doesn't support Async, so we would need to use external packages such as [`databases`](https://github.com/encode/databases).
+We prefer to keep it simple at this step and use the synchronous version of SQLAlchemy & FastAPI endpoints.
 
 ### Step 3: FastAPI + SQLAlchemy (>=2.0)
 
 This is the final stack which is built in this repository.
 
-Other than the improvements of the previous stack, this stack also provides typesafety in the database layer.
+Other than the improvements of the previous stack, this stack also provides typesafety in the database layer and the native Async support.
 
 SQLAlchemy 2.0 introduced native support for typed ORM models, which is a huge improvement over the previous versions (which required Mypy plugins that weren't well-supported).
+
+Also, since 1.4, SQLAlchemy supports Async natively, so we can turn our FastAPI endpoints into Async endpoints and reap the benefits of Async I/O.
 
 SQLAlchemy 2.0 also provides a series of additional performance improvements ([2.0 release post](https://www.sqlalchemy.org/blog/2023/01/26/sqlalchemy-2.0.0-released/))
 
