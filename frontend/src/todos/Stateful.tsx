@@ -32,7 +32,7 @@ export function Stateful ({
 
   const toggleTodo = async (id: number): Promise<void> => {
     if (data == null || data.length <= id) return
-    await editTodo(id, { completed: !data[id].completed })
+    await editTodo(id, { completed: !(data[id].completed) })
     await refreshTodos()
   }
 

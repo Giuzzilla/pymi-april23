@@ -1,5 +1,5 @@
-import { DefaultService } from './fastapi-client'
-import { Stateful } from './Stateful'
+import { DefaultService } from '../fastapi-client'
+import { Stateful } from '../todos/Stateful'
 
 export function FastAPI (): JSX.Element {
   return Stateful({

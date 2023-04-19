@@ -1,4 +1,4 @@
-import { Stateful } from './Stateful'
+import { Stateful } from '../todos/Stateful'
 
 // Manually written client for Flask
 async function getTodos (): Promise<Array<{ id: number, title: string, completed: boolean }>> {

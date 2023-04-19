@@ -1,10 +1,10 @@
 import './App.css'
 import React, { useState } from 'react'
-import { FastAPI } from './FastApi'
-import { Stateless } from './Stateless'
-import { ComponentTRPC } from './trpc'
+import { FastAPI } from './backend-impl/FastApi'
+import { Stateless } from './todos/Stateless'
+import { ComponentTRPC } from './backend-impl/trpc'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Flask } from './Flask'
+import { Flask } from './backend-impl/Flask'
 
 const queryClient = new QueryClient()
 

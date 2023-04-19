@@ -1,5 +1,5 @@
-import { Stateful } from './Stateful'
-import type { AppRouter } from './trpc-server/index'
+import { Stateful } from '../todos/Stateful'
+import type { AppRouter } from '../trpc-server/index'
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client'
 
 const trpc = createTRPCProxyClient<AppRouter>({
