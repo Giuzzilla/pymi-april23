@@ -19,6 +19,15 @@
         }
       },
       {
+        "path": "backend/node",
+        "settings": {
+          "editor.codeActionsOnSave": {
+              "source.fixAll.eslint": true
+          },
+          "eslint.format.enable": true,
+        }
+      },
+      {
         "path": "frontend",
         "settings": {
           "editor.codeActionsOnSave": {
