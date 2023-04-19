@@ -16,6 +16,10 @@ export default defineConfig({
         target: 'http://localhost:5000',
         rewrite: path => path.replace(/^\/api\/flask/, ''),
       },
+      '^/api/trpc': {
+        target: 'http://localhost:3000',
+        rewrite: path => path.replace(/^\/api\/trpc/, ''),
+      }
     },
   },
 });
