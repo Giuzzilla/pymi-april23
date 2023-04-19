@@ -1,6 +1,6 @@
 # PyMi April '23 - "FastAPI and SQLAlchemy 2.0: Name a More Pythonic Duo"
 
-Code for presentation @ PyMi Meetup (April 19th 2023)
+Code for presentation @ [PyMi Meetup](https://milano.python.it/) (April 19th 2023)
 
 The topic of the presentation was to show a comparison between typical web application stacks in the Python and the Typescript ecosystems.
 
