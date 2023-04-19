@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from fastapi import FastAPI, Depends, Response
+from fastapi import FastAPI, Depends
 from fastapi.routing import APIRoute
 from pydantic import BaseModel
 from sqlalchemy import select
