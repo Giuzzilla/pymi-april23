@@ -21,7 +21,7 @@ class Base(MappedAsDataclass, DeclarativeBase):
 class Todo(Base):
     __tablename__ = "todos"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[intpk]
     title: Mapped[str30 | None]
     completed: Mapped[bool] = mapped_column(default=False)
 
